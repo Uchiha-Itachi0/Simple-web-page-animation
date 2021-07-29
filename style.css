@@ -1,0 +1,142 @@
+
+/* It delete all the browser defined padding and margin */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* For centering element */
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: rgb(30, 30, 30);
+    color: white;
+}
+
+/* Now styling the .img-container */
+.img-container{
+    position: relative;
+    height: 600px;
+    width: 80vw;
+    background: url("images/naruto.jpg") no-repeat center;
+    background-size: cover;
+
+    /* For changing width */
+    animation: width-change 0.8s linear;
+
+    /* For text to be center */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* Now for h1 and h2 */
+.img-container h1, h2{
+    color: white;
+    /* So that they appear on top of every thing */
+    z-index: 2;
+    /* When not in hovering state there opacity is 0 */
+    opacity: 0;
+}
+
+
+/* For animation of h1 and h2 */
+.img-container h1{
+    transition: 0.5s;
+
+    /* So that it comes from right */
+    transform: translateX(100px);
+
+    /* Gap between h1 and h2 */
+    line-height: 6rem;
+
+    font-size: 3rem;
+}
+
+.img-container h2{
+    transition: 0.5s;
+
+    /* So that it comes from left */
+    transform: translateX(-100px);
+
+    font-size: 2.5rem;
+}
+
+/* On hovering they should come to their original position  */
+.img-container:hover h1{
+    opacity: 1;
+    transform: translateX(0);
+}
+.img-container:hover h2{
+    opacity: 1;
+    transform: translateX(0);
+
+}
+
+/* Adding a black filter over image */
+.img-container:hover::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+
+    /* This is the reason we set the image container
+    position to relative */
+    position: absolute;
+
+    background: rgba(0, 0, 0, 0.4);
+}
+
+
+/* Setting width change animation */
+@keyframes width-change {
+    0%{
+        width: 0px;
+    }
+    100%{
+        width: 80vw;
+    }
+    
+}
+
+/* For the slider that comes from the left on loading the page */
+.slider{
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: -1;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(90deg, purple, white);
+    animation: slide-right 0.8s linear forwards;
+    animation-delay: 1s;
+}
+
+@keyframes slide-right {
+    0%{
+        left: -100%;
+    }
+    100%{
+        left: 0;
+    }
+    
+}
+
+@media (max-width:450px) {
+    .img-container h1{
+        font-size: 1.5rem;
+    }
+
+    .img-container h2{
+        font-size: 1.3rem;
+    }
+
+    *{
+        overflow: hidden;
+    }
+    
+}
